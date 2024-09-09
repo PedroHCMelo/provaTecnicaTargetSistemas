@@ -1,0 +1,63 @@
+Folha resposta Target Sistemas
+
+A linguagem escolhida para realizar o questionário foi Python.
+
+1 - O valor final da variável SOMA é 91.
+
+2- Em Pyhon:
+
+  def pertence_fibonacci(num):
+    # Inicializa os dois primeiros números da sequência de Fibonacci
+    a, b = 0, 1
+    
+    # Enquanto o valor 'b' for menor que o número informado
+    while b < num:
+        a, b = b, a + b  # Atualiza os valores de a e b com os próximos números da sequência
+        
+    # Verifica se o número informado pertence à sequência de Fibonacci
+    if b == num or num == 0:
+        return f"O número {num} pertence à sequência de Fibonacci."
+    else:
+        return f"O número {num} NÃO pertence à sequência de Fibonacci."
+
+# Entrada de dados
+numero = int(input("Informe um número: "))
+print(pertence_fibonacci(numero))
+
+3 - Json da questão:
+{
+    "faturamento_diario": [
+        {"dia": 1, "valor": 1000},
+        {"dia": 2, "valor": 2000},
+        {"dia": 3, "valor": 0},
+        {"dia": 4, "valor": 3000},
+        {"dia": 5, "valor": 0},
+        {"dia": 6, "valor": 1500},
+        {"dia": 7, "valor": 4000}
+    ]
+}
+
+ - Código em Python
+import json
+
+# Função para calcular o menor, maior valor e dias com faturamento acima da média
+def calcular_faturamento(faturamento_mensal):
+    # Filtra os dias com faturamento (ignora os valores 0)
+    faturamento_valido = [dia["valor"] for dia in faturamento_mensal if dia["valor"] > 0]
+    
+    # Calcula o menor e o maior valor de faturamento
+    menor_valor = min(faturamento_valido)
+    maior_valor = max(faturamento_valido)
+    
+    # Calcula a média de faturamento mensal
+    media_faturamento = sum(faturamento_valido) / len(faturamento_valido)
+    
+    # Conta os dias com faturamento acima da média
+    dias_acima_media = len([valor for valor in faturamento_valido if valor > media_faturamento])
+    
+    return menor_valor, maior_valor, dias_acima_media
+
+ - Saída de dados
+  Menor valor de faturamento: R$ 1000
+  Maior valor de faturamento: R$ 4000
+  Número de dias com faturamento acima da média: 2
